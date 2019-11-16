@@ -23,7 +23,7 @@ gulp.task("js", function () {
       presets: ['@babel/preset-env'],
       plugins: ['transform-custom-element-classes'],
     }))
-    // .pipe(uglify())
+    .pipe(uglify())
     .pipe(gulp.dest("js/min"));
 });
 

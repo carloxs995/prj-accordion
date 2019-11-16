@@ -11,6 +11,7 @@
 <body>
   <h1>Accordion Demo Page</h1>
   <div id="my-accordion"></div>
+  <div id="my-accordion2"></div>
 
   <script type="text/javascript">
     var options = {
@@ -30,7 +31,25 @@
       ]
     }
 
+    var options2 = {
+      container: 'my-accordion2',
+      mainTitle: 'Main accordion title',
+      panels: [
+        {
+          title: 'My Profile',
+          subtitle: 'Update your profile information',
+          content: '<p>HTML content for this panel</p>',
+        },
+        {
+          title: 'Change password',
+          subtitle: 'Change your login password',
+          content: '<p>HTML content for this panel</p>',
+        },
+      ]
+    }
+
     var accordion = new Accordion(options);
+    var accordion2 = new Accordion(options2);
   </script>
 </body>
 

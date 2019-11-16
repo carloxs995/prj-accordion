@@ -27,6 +27,8 @@ class Accordion {
     try {
       if (!this.container)
         throw 'Container property is required';
+      if (!document.getElementById(this.container))
+        throw `You must created an element with ID: ${this.container}`;
       if (!this.panels.length)
         throw 'At least the insertion of an accordion is required';
       if (!this.panels.find(a => a.title && a.content))
