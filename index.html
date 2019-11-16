@@ -3,15 +3,35 @@
 <head>
   <title>Accordion Demo Page</title>
   <link rel="stylesheet" href="/css/styles.css">
-  <link rel="stylesheet" type="text/css" href="/css/accordion.css">
+  <link rel="stylesheet" href="/css/accordion.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <script type="text/javascript" src="/js/min/accordion.js"></script>
 </head>
 
 <body>
-  <main class="main">
-    <h3>CIaofrrfrfff</h3>
-  </main>
+  <h1>Accordion Demo Page</h1>
+  <div id="my-accordion"></div>
+
+  <script type="text/javascript">
+    var options = {
+      container: 'my-accordion',
+      mainTitle: 'Main accordion title',
+      panels: [
+        {
+          title: 'My Profile',
+          subtitle: 'Update your profile information',
+          content: '<p>HTML content for this panel</p>',
+        },
+        {
+          title: 'Change password',
+          subtitle: 'Change your login password',
+          content: '<p>HTML content for this panel</p>',
+        },
+      ]
+    }
+
+    var accordion = new Accordion(options);
+  </script>
 </body>
 
 </html>
