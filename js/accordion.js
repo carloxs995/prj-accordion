@@ -8,6 +8,19 @@ class Accordion {
     this.render();
   }
 
+  static changeVisibilityContent(event) {
+    const target = event.target;
+    const parentEl = target.closest('.accordion-panels__single-accordion');
+
+    if (event.target.innerText === 'keyboard_arrow_down') {
+      parentEl.classList.add('show');
+      target.innerText = 'keyboard_arrow_up';
+    } else {
+      parentEl.classList.remove('show');
+      target.innerText = 'keyboard_arrow_down';
+    }
+  }
+
   render() {
 
     if (!this.checkSettings())
@@ -112,7 +125,7 @@ class Accordion {
     const arrowDown = document.createElement('i');
     arrowDown.className = 'material-icons';
     arrowDown.innerText = 'keyboard_arrow_down';
-    arrowDown.setAttribute('onclick', 'Accordion.changeVisibilityContent(event.target)');
+    arrowDown.setAttribute('onclick', 'Accordion.changeVisibilityContent(event)');
 
     arrowSection.appendChild(arrowDown);
 
@@ -125,9 +138,5 @@ class Accordion {
     }
 
     return singleAccordion;
-  }
-
-  static changeVisibilityContent(event) {
-    event.innerText = (event.innerText === 'keyboard_arrow_down' ? 'keyboard_arrow_up' : 'keyboard_arrow_down');
   }
 }   
