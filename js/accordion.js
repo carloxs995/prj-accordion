@@ -10,7 +10,7 @@ class Accordion {
 
   static changeVisibilityContent(event) {
     const target = event.target;
-    const parentEl = target.closest('.accordion-panels__single-accordion');
+    const parentEl = target.closest('.single-accordion');
 
     if (event.target.innerText === 'keyboard_arrow_down') {
       parentEl.classList.add('show');
@@ -70,7 +70,7 @@ class Accordion {
     const box = document.createElement('div');
     box.className = 'accordion-container__main-title';
 
-    const title = document.createElement('h3');
+    const title = document.createElement('span');
     title.innerText = this.mainTitle;
 
     box.appendChild(title);
@@ -93,7 +93,7 @@ class Accordion {
     const content = panel.content ? panel.content : null;
 
     const singleAccordion = document.createElement('div');
-    singleAccordion.className = 'accordion-panels__single-accordion';
+    singleAccordion.className = 'single-accordion';
 
     const header = document.createElement('div');
     header.className = 'accordion-header';
