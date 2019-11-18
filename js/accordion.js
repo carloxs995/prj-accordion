@@ -107,12 +107,14 @@ class Accordion {
 
     const titleAccordion = document.createElement('span');
     titleAccordion.innerText = title;
+    titleAccordion.className = 'title';
 
     mainInfoAccordion.appendChild(titleAccordion);
 
     if (subtitle) {
-      const subtitleAccordion = document.createElement('p');
+      const subtitleAccordion = document.createElement('span');
       subtitleAccordion.innerText = subtitle;
+      subtitleAccordion.className = 'desc';
 
       mainInfoAccordion.appendChild(subtitleAccordion);
     }
