@@ -1,12 +1,18 @@
 class Accordion {
 
   constructor(a) {
-    this.container = a.container; //Required
+    this.container = a.container;
     this.mainTitle = a.mainTitle;
-    this.panels = a.panels; //Required lenght >= 1 and title on single Accordion
+    this.panels = a.panels;
 
     this.render();
   }
+
+  /**
+   * Function that manages the visibility of the content
+   * 
+   * @param {} event
+   */
 
   static changeVisibilityContent(event) {
     const target = event.target;
@@ -19,18 +25,6 @@ class Accordion {
       parentEl.classList.remove('show');
       target.innerText = 'keyboard_arrow_down';
     }
-  }
-
-  render() {
-
-    if (!this.checkSettings())
-      return;
-
-    this.setClassOnContainer();
-
-    this.setMainTitleBox();
-
-    this.setAccordionList();
   }
 
   /**
@@ -64,8 +58,6 @@ class Accordion {
    * Create main box with title if is setted
    */
   setMainTitleBox() {
-    if (!this.mainTitle)
-      return;
 
     const box = document.createElement('div');
     box.className = 'accordion-container__main-title';
@@ -77,40 +69,59 @@ class Accordion {
     document.getElementById(this.container).appendChild(box);
   }
 
+  /**
+   * Create container of accordion list and generate single accordion
+   */
   setAccordionList() {
     const accordionList = document.createElement('div');
     accordionList.className = 'accordion-container__accordion-list';
 
-    this.panels.map(p => accordionList.appendChild(this.createSinglePanel(p)));
+    //Create single accordion if content is setted
+    this.panels.forEach(panel => {
+      if (panel.content) {
+        accordionList.appendChild(this.createSinglePanel(panel));
+      }
+    });
 
     document.getElementById(this.container).appendChild(accordionList);
   }
 
+  /**
+   * Generate single panel with property various
+   * 
+   * @param {*} panel 
+   */
   createSinglePanel(panel) {
-    //Setting props of single pannel
+    //Setting props of single panel
     const title = panel.title; // required
-    const subtitle = panel.subtitle ? panel.subtitle : null;
-    const content = panel.content ? panel.content : null;
+    const subtitle = panel.subtitle ? panel.subtitle : null; //optional
+    const content = panel.content; //optional
 
+    //Create Container Single Accordion
     const singleAccordion = document.createElement('div');
     singleAccordion.className = 'single-accordion';
 
+    //Set Header Accordion
     const header = document.createElement('div');
     header.className = 'accordion-header';
 
     singleAccordion.appendChild(header);
+
+    //Set main info on single accordion header
 
     const mainInfoAccordion = document.createElement('span');
     mainInfoAccordion.className = 'main-info-accordion';
 
     header.appendChild(mainInfoAccordion);
 
+    //Create element for accordion title
     const titleAccordion = document.createElement('span');
     titleAccordion.innerText = title;
     titleAccordion.className = 'title';
 
     mainInfoAccordion.appendChild(titleAccordion);
 
+    //If exist add subtitle on accordion
     if (subtitle) {
       const subtitleAccordion = document.createElement('span');
       subtitleAccordion.innerText = subtitle;
@@ -119,6 +130,7 @@ class Accordion {
       mainInfoAccordion.appendChild(subtitleAccordion);
     }
 
+    //Add Arrow to Accordion header
     const arrowSection = document.createElement('span');
     arrowSection.className = 'arrow';
 
@@ -131,14 +143,27 @@ class Accordion {
 
     arrowSection.appendChild(arrowDown);
 
-    if (content) {
-      const contentAccordion = document.createElement('div');
-      contentAccordion.className = 'accordion-content';
-      contentAccordion.innerHTML = content;
+    //Add Content on Single Accordion
+    const contentAccordion = document.createElement('div');
+    contentAccordion.className = 'accordion-content';
+    contentAccordion.innerHTML = content;
 
-      singleAccordion.appendChild(contentAccordion);
-    }
+    singleAccordion.appendChild(contentAccordion);
 
     return singleAccordion;
+  }
+
+  render() {
+
+    if (!this.checkSettings())
+      return;
+
+    this.setClassOnContainer();
+
+    if (this.mainTitle) {
+      this.setMainTitleBox();
+    }
+
+    this.setAccordionList();
   }
 }   

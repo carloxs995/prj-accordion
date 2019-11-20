@@ -4,6 +4,7 @@ const sass = require("gulp-sass");
 const uglify = require("gulp-uglify");
 const babel = require("gulp-babel");
 const plumber = require("gulp-plumber");
+const rename = require("gulp-rename");
 const browserSync = require("browser-sync").create();
 
 gulp.task("sass", function () {
@@ -24,7 +25,8 @@ gulp.task("js", function () {
       plugins: ['transform-custom-element-classes'],
     }))
     .pipe(uglify())
-    .pipe(gulp.dest("js/min"));
+    .pipe(rename({ suffix: '.min' }))
+    .pipe(gulp.dest("js/dist"));
 });
 
 gulp.task("watch", function () {
