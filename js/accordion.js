@@ -66,6 +66,7 @@ class Accordion {
 
     const title = document.createElement('span');
     title.innerText = this.mainTitle;
+    title.className = 'title';
 
     box.appendChild(title);
     document.getElementById(this.container).appendChild(box);
