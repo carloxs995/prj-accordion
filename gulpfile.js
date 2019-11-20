@@ -22,7 +22,6 @@ gulp.task("js", function () {
     .pipe(plumber())
     .pipe(babel({
       presets: ['@babel/preset-env'],
-      plugins: ['transform-custom-element-classes'],
     }))
     .pipe(uglify())
     .pipe(rename({ suffix: '.min' }))
