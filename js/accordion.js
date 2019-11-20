@@ -17,13 +17,14 @@ class Accordion {
   static changeVisibilityContent(event) {
     const target = event.target;
     const parentEl = target.closest('.single-accordion');
+    const arrow = parentEl.querySelector('.material-icons');
 
-    if (event.target.innerText === 'keyboard_arrow_down') {
+    if (arrow.innerText === 'keyboard_arrow_down') {
       parentEl.classList.add('show');
-      target.innerText = 'keyboard_arrow_up';
+      arrow.innerText = 'keyboard_arrow_up';
     } else {
       parentEl.classList.remove('show');
-      target.innerText = 'keyboard_arrow_down';
+      arrow.innerText = 'keyboard_arrow_down';
     }
   }
 
@@ -44,6 +45,7 @@ class Accordion {
     }
     catch (e) {
       console.error(e);
+      return false;
     }
   }
 
@@ -104,6 +106,7 @@ class Accordion {
     //Set Header Accordion
     const header = document.createElement('div');
     header.className = 'accordion-header';
+    header.setAttribute('onclick', 'Accordion.changeVisibilityContent(event)');
 
     singleAccordion.appendChild(header);
 
@@ -139,7 +142,6 @@ class Accordion {
     const arrowDown = document.createElement('i');
     arrowDown.className = 'material-icons';
     arrowDown.innerText = 'keyboard_arrow_down';
-    arrowDown.setAttribute('onclick', 'Accordion.changeVisibilityContent(event)');
 
     arrowSection.appendChild(arrowDown);
 
